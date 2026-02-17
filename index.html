@@ -3,47 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Portal - Rahim Islam</title>
+    <title>রহিম ভাই - ১০০ অ্যাড টাস্ক</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #0f172a; color: white; text-align: center; padding: 20px; }
-        .container { max-width: 450px; margin: auto; background: #1e293b; padding: 20px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); border: 2px solid #38bdf8; }
-        h1 { color: #38bdf8; }
-        .btn { display: block; width: 100%; padding: 15px; margin: 10px 0; border-radius: 10px; font-weight: bold; text-decoration: none; font-size: 16px; cursor: pointer; border: none; transition: 0.3s; }
-        .income-btn { background: #2563eb; color: white; }
-        .income-btn:hover { background: #3b82f6; }
-        .dl-btn { background: #10b981; color: white; }
-        .dl-btn:hover { background: #059669; }
-        input { width: 100%; padding: 12px; margin-bottom: 10px; border-radius: 8px; border: none; background: #0f172a; color: white; box-sizing: border-box; }
-        .ad-box { background: rgba(255,255,255,0.05); padding: 15px; margin: 15px 0; border: 1px dashed #475569; border-radius: 10px; color: #94a3b8; font-size: 12px; }
-        #status { color: #fbbf24; font-weight: bold; margin-bottom: 10px; display: block; }
+        body { font-family: 'Arial', sans-serif; text-align: center; background: #eef2f3; padding: 20px; padding-top: 50px; }
+        .box { background: white; width: 100%; max-width: 400px; margin: auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .counter-circle { width: 100px; height: 100px; line-height: 100px; border-radius: 50%; background: #3498db; color: white; font-size: 30px; margin: 20px auto; border: 5px solid #2980b9; }
+        .btn-ad { background: #2ecc71; color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 50px; cursor: pointer; width: 100%; font-weight: bold; }
+        .payment-section { display: none; margin-top: 20px; background: #fff3cd; padding: 15px; border-radius: 10px; border: 1px solid #ffeeba; }
+        input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
+        .btn-wa { background: #25D366; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold; font-size: 16px; }
+        .notice { color: #856404; font-size: 14px; font-weight: bold; }
     </style>
 </head>
 <body>
 
-<div class="container">
-    <h1>স্মার্ট ইনকাম ও টুলস 💰</h1>
-    <span id="status">● সার্ভার অনলাইনে আছে</span>
+<div class="box">
+    <h2>রহিম ভাই - ডেইলি ইনকাম</h2>
+    <p>১০০টি অ্যাড পূর্ণ করুন এবং ৭০ টাকা বুঝে নিন!</p>
+    
+    <div class="counter-circle" id="count_display">0</div>
+    <p id="status_text">অ্যাড বাকি আছে: <span id="remaining">100</span> টি</p>
 
-    <div class="ad-box">বিজ্ঞাপন এখানে (Adsterra কোড বসান)</div>
+    <div id="ad-box" style="margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; background: #fafafa; min-height: 100px;">
+        [বিজ্ঞাপন এখানে লোড হবে]
+    </div>
 
-    <h3>💸 সরাসরি ইনকাম সাইট</h3>
-    <a href="https://sproutgigs.com/" target="_blank" class="btn income-btn">১. ছোট কাজ (SproutGigs)</a>
-    <a href="https://www.swagbucks.com/" target="_blank" class="btn income-btn">২. সার্ভে (Swagbucks)</a>
-    <a href="https://timebucks.com/" target="_blank" class="btn income-btn">৩. ডেইলি টাস্ক (TimeBucks)</a>
-    <a href="https://freecash.com/" target="_blank" class="btn income-btn">৪. গেম খেলে আয় (FreeCash)</a>
+    <button id="ad_btn" class="btn-ad" onclick="startAd()">অ্যাড দেখুন</button>
 
-    <div class="ad-box">বিজ্ঞাপন এখানে (Adsterra কোড বসান)</div>
-
-    <h3>🎥 রিলস ডাউনলোডার</h3>
-    <form action="https://savefrom.net/187/" method="get" target="_blank">
-        <input type="text" name="url" placeholder="ভিডিও লিঙ্ক এখানে দিন..." required>
-        <button type="submit" class="btn dl-btn">ডাউনলোড শুরু করুন</button>
-    </form>
-
-    <div class="ad-box">বিজ্ঞাপন এখানে (Adsterra কোড বসান)</div>
+    <div id="payment_ui" class="payment-section">
+        <p class="notice">অভিনন্দন! ১০০টি অ্যাড দেখা শেষ।<br>নিচে আপনার বিকাশ নাম্বার দিন। ২৪ ঘণ্টার মধ্যে পেমেন্ট পেয়ে যাবেন।</p>
+        <input type="number" id="bkash_number" placeholder="আপনার বিকাশ নাম্বার দিন">
+        <button class="btn-wa" onclick="sendToWhatsapp()">✅ হোয়াটসঅ্যাপে মেসেজ পাঠিয়ে টাকা নিন</button>
+    </div>
 </div>
 
-<footer>তৈরি করেছেন: রহিম ইসলাম | ২০২৬</footer>
+<script>
+    let count = 0;
+    let target = 100;
+    let adminNumber = "8801619158284"; // আপনার দেওয়া নাম্বার
+
+    function startAd() {
+        // এই ফাংশনটি অ্যাড দেখার পর কাজ করবে
+        count++;
+        
+        if (count < target) {
+            document.getElementById('count_display').innerText = count;
+            document.getElementById('remaining').innerText = target - count;
+        } else {
+            // ১০০ পূর্ণ হলে
+            document.getElementById('count_display').innerText = "১০০";
+            document.getElementById('ad_btn').style.display = 'none';
+            document.getElementById('status_text').style.display = 'none';
+            document.getElementById('payment_ui').style.display = 'block';
+        }
+    }
+
+    function sendToWhatsapp() {
+        let bKash = document.getElementById('bkash_number').value;
+        if (bKash.length < 11) {
+            alert("দয়া করে সঠিক বিকাশ নাম্বার দিন!");
+            return;
+        }
+
+        let message = "হ্যালো রহিম ভাই, আমি ১০০টি অ্যাড দেখা শেষ করেছি।\n\nআমার বিকাশ নাম্বার: " + bKash + "\n\nদয়া করে আমাকে ৭০ টাকা পেমেন্ট দিন।";
+        let waUrl = "https://wa.me/" + adminNumber + "?text=" + encodeURIComponent(message);
+        window.open(waUrl, '_blank');
+    }
+</script>
 
 </body>
 </html>
