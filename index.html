@@ -3,94 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>রহিম ভাই - প্রিমিয়াম ইনকাম</title>
+    <title>রহিম ভাই - ১০০% পেমেন্ট গ্যারান্টি</title>
     <style>
         body { font-family: 'Arial', sans-serif; text-align: center; background: #eef2f3; padding: 20px; }
-        .box { background: white; width: 100%; max-width: 400px; margin: auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
-        .counter-circle { width: 100px; height: 100px; line-height: 100px; border-radius: 50%; background: #3498db; color: white; font-size: 30px; margin: 20px auto; border: 5px solid #2980b9; }
-        .btn-ad { background: #2ecc71; color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 50px; cursor: pointer; width: 100%; font-weight: bold; box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3); }
-        .btn-ad:disabled { background: #95a5a6; cursor: not-allowed; }
-        .payment-section { display: none; margin-top: 20px; background: #fff3cd; padding: 15px; border-radius: 10px; border: 1px solid #ffeeba; }
-        input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
-        .btn-wa { background: #25D366; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold; font-size: 16px; }
-        .timer-msg { color: #e74c3c; font-weight: bold; margin-top: 15px; display: none; }
-        #ad-box { margin-bottom: 20px; min-height: 50px; }
+        .box { background: white; max-width: 400px; margin: auto; padding: 25px; border-radius: 20px; box-shadow: 0 5px 20px rgba(0,0,0,0.1); }
+        
+        /* নোটিশ স্টাইল */
+        #rules-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); display: flex; align-items: center; justify-content: center; z-index: 1000; }
+        .modal-content { background: white; padding: 25px; width: 85%; max-width: 350px; border-radius: 15px; text-align: left; }
+        .btn-ok { background: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px; width: 100%; cursor: pointer; font-weight: bold; margin-top: 15px; }
+
+        .point-box { font-size: 45px; color: #2ecc71; font-weight: bold; margin: 15px 0; border: 2px dashed #2ecc71; display: inline-block; padding: 10px 30px; border-radius: 10px; }
+        .btn-ad { background: #e67e22; color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 50px; cursor: pointer; width: 100%; font-weight: bold; }
+        .btn-ad:disabled { background: #ccc; cursor: not-allowed; }
+        #timer-text { color: #e74c3c; font-weight: bold; height: 20px; margin: 10px 0; }
+        .payment-area { display: none; background: #d4edda; padding: 15px; border-radius: 10px; margin-top: 20px; border: 1px solid #c3e6cb; }
+        input { width: 90%; padding: 12px; margin-bottom: 10px; border-radius: 5px; border: 1px solid #ddd; }
     </style>
 </head>
 <body>
 
-<div class="box">
-    <h2>রহিম ভাই - ডেইলি ইনকাম</h2>
-    <p>প্রতিদিন ১০০ অ্যাড দেখুন এবং ৭০ টাকা লুফে নিন!</p>
-    
-    <div class="counter-circle" id="count_display">0</div>
-    <p id="status_text">আজকের অ্যাড বাকি: <span id="remaining">100</span> টি</p>
+<div id="rules-modal">
+    <div class="modal-content">
+        <h3 style="text-align: center; color: #d35400;">⚠️ কাজের নিয়ম জানুন</h3>
+        <p>১. অন্তত <b>২০০ পয়েন্ট</b> হলে ১৫ টাকা পাবেন।</p>
+        <p>২. 'অ্যাড দেখুন' বাটনে চাপ দিয়ে <b>১০ সেকেন্ড</b> অপেক্ষা করতে হবে।</p>
+        <p>৩. ১০ সেকেন্ড পর অটোমেটিক পয়েন্ট যোগ হবে, তারপর ব্যাক দিবেন।</p>
+        <p>৪. ২০০ পয়েন্ট হলে হোয়াটসঅ্যাপ বাটন পাবেন, সেখানে নাম্বার দিলেই ২৪ ঘণ্টার মধ্যে পেমেন্ট পাবেন।</p>
+        <p>৫. নিয়ম মানলে ১০০% গ্যারান্টি পেমেন্ট।</p>
+        <button class="btn-ok" onclick="closeNotice()">আমি নিয়ম বুঝেছি</button>
+    </div>
+</div>
 
-    <div id="ad-box">
+<div class="box">
+    <h2>রহিম ভাই ইনকাম প্রো</h2>
+    <p>আপনার বর্তমান পয়েন্ট:</p>
+    <div class="point-box"><span id="points">0</span></div>
+    
+    <div id="timer-text"></div>
+
+    <div id="ad-space" style="margin: 20px 0;">
         <script src="https://pl28731130.effectivegatecpm.com/91/c9/da/91c9da9e82261b9ef97f96ae90eb7377.js"></script>
     </div>
 
-    <button id="ad_btn" class="btn-ad" onclick="startAd()">অ্যাড দেখুন</button>
-    <p id="limit_msg" class="timer-msg">⚠️ আজকের লিমিট শেষ! ২৪ ঘণ্টা পর আবার পেমেন্ট নিতে পারবেন।</p>
+    <button id="ad_btn" class="btn-ad" onclick="startTask()">অ্যাড দেখুন (১০ সেকেন্ড)</button>
 
-    <div id="payment_ui" class="payment-section">
-        <p style="color: #856404; font-weight: bold;">অভিনন্দন! আপনার কাজ শেষ।<br>বিকাশ নাম্বার দিন, ২৪ ঘণ্টার মধ্যে পেমেন্ট পাবেন।</p>
-        <input type="number" id="bkash_number" placeholder="আপনার বিকাশ নাম্বার দিন">
-        <button class="btn-wa" onclick="sendToWhatsapp()">✅ হোয়াটসঅ্যাপে পেমেন্ট রিকোয়েস্ট দিন</button>
+    <div id="payment_ui" class="payment-area">
+        <h3 style="color: #155724;">অভিনন্দন! ২০০ পয়েন্ট পূর্ণ হয়েছে।</h3>
+        <p>নিচে আপনার বিকাশ নাম্বার দিন:</p>
+        <input type="number" id="bkash_num" placeholder="বিকাশ নাম্বার দিন">
+        <button onclick="sendClaim()" style="background:#25D366; color:white; border:none; padding:15px; width:100%; border-radius:10px; cursor:pointer; font-weight: bold;">✅ পেমেন্ট নিতে হোয়াটসঅ্যাপে জানান</button>
     </div>
 </div>
 
 <script>
-    let target = 100;
-    let adminNumber = "8801619158284"; // আপনার হোয়াটসঅ্যাপ নাম্বার
-    
-    // ব্রাউজার মেমোরি থেকে ডাটা লোড
-    let count = parseInt(localStorage.getItem('rahim_ad_count')) || 0;
-    let lastDate = localStorage.getItem('rahim_last_date');
-    let today = new Date().toDateString();
+    let points = parseInt(localStorage.getItem('user_pts_new')) || 0;
+    document.getElementById('points').innerText = points;
 
-    // নতুন দিন হলে কাউন্টার রিসেট হবে
-    if (lastDate !== today) {
-        count = 0;
-        localStorage.setItem('rahim_ad_count', 0);
-        localStorage.setItem('rahim_last_date', today);
+    if(points >= 200) { showPayment(); }
+
+    function closeNotice() {
+        document.getElementById('rules-modal').style.display = 'none';
     }
 
-    updateUI();
+    function startTask() {
+        let btn = document.getElementById('ad_btn');
+        let timerDisplay = document.getElementById('timer-text');
+        let timeLeft = 10;
 
-    function startAd() {
-        if (count < target) {
-            count++;
-            localStorage.setItem('rahim_ad_count', count);
-            updateUI();
-            
-            // অ্যাড দেখানোর পর ইউজারকে একটু জানানো যে অ্যাড লোড হচ্ছে
-            console.log("Ad Clicked: " + count);
-        }
+        btn.disabled = true;
+        timerDisplay.innerText = "অ্যাড লোড হচ্ছে: " + timeLeft + " সেকেন্ড বাকি";
+
+        let countdown = setInterval(function() {
+            timeLeft--;
+            if(timeLeft <= 0) {
+                clearInterval(countdown);
+                points++;
+                localStorage.setItem('user_pts_new', points);
+                document.getElementById('points').innerText = points;
+                timerDisplay.innerText = "পয়েন্ট যোগ হয়েছে! আবার দেখুন।";
+                btn.disabled = false;
+                if(points >= 200) { showPayment(); }
+            } else {
+                timerDisplay.innerText = "অ্যাড লোড হচ্ছে: " + timeLeft + " সেকেন্ড বাকি";
+            }
+        }, 1000);
     }
 
-    function updateUI() {
-        document.getElementById('count_display').innerText = count;
-        document.getElementById('remaining').innerText = target - count;
-
-        if (count >= target) {
-            document.getElementById('ad_btn').style.display = 'none';
-            document.getElementById('status_text').style.display = 'none';
-            document.getElementById('payment_ui').style.display = 'block';
-            document.getElementById('limit_msg').style.display = 'block';
-        }
+    function showPayment() {
+        document.getElementById('ad_btn').style.display = 'none';
+        document.getElementById('timer-text').style.display = 'none';
+        document.getElementById('payment_ui').style.display = 'block';
     }
 
-    function sendToWhatsapp() {
-        let bKash = document.getElementById('bkash_number').value;
-        if (bKash.length < 11) {
-            alert("সঠিক বিকাশ নাম্বার দিন!");
-            return;
-        }
-        let message = "হ্যালো রহিম ভাই,\n\nআমি আজকের ১০০টি অ্যাড দেখা শেষ করেছি।\nআমার বিকাশ নাম্বার: " + bKash + "\n\nদয়া করে আমার ৭০ টাকা পেমেন্ট পাঠিয়ে দিন।";
-        window.open("https://wa.me/" + adminNumber + "?text=" + encodeURIComponent(message), '_blank');
+    function sendClaim() {
+        let num = document.getElementById('bkash_num').value;
+        if(num.length < 11) { alert("সঠিক বিকাশ নাম্বার দিন"); return; }
+        
+        let text = "হ্যালো রহিম ভাই, আমি ২০০ পয়েন্ট পূর্ণ করেছি।\nবিকাশ নাম্বার: " + num + "\nদয়া করে আমার ১৫ টাকা পাঠিয়ে দিন।";
+        window.open("https://wa.me/8801619158284?text=" + encodeURIComponent(text));
     }
 </script>
 
 </body>
-</html>
+    </html>
