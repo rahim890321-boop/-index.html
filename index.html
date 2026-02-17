@@ -3,69 +3,73 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>রহিম ভাই - প্রফেশনাল ইনকাম</title>
+    <title>রহিম ভাই - প্রিমিয়াম ইনকাম</title>
     <style>
         body { font-family: 'Arial', sans-serif; text-align: center; background: #eef2f3; padding: 20px; }
         .box { background: white; width: 100%; max-width: 400px; margin: auto; padding: 30px; border-radius: 20px; box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
         .counter-circle { width: 100px; height: 100px; line-height: 100px; border-radius: 50%; background: #3498db; color: white; font-size: 30px; margin: 20px auto; border: 5px solid #2980b9; }
-        .btn-ad { background: #2ecc71; color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 50px; cursor: pointer; width: 100%; font-weight: bold; }
+        .btn-ad { background: #2ecc71; color: white; border: none; padding: 15px 30px; font-size: 18px; border-radius: 50px; cursor: pointer; width: 100%; font-weight: bold; box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3); }
         .btn-ad:disabled { background: #95a5a6; cursor: not-allowed; }
         .payment-section { display: none; margin-top: 20px; background: #fff3cd; padding: 15px; border-radius: 10px; border: 1px solid #ffeeba; }
         input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ccc; border-radius: 5px; font-size: 16px; }
-        .btn-wa { background: #25D366; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold; }
-        .timer-msg { color: red; font-weight: bold; margin-top: 10px; display: none; }
+        .btn-wa { background: #25D366; color: white; border: none; padding: 15px; border-radius: 10px; cursor: pointer; width: 100%; font-weight: bold; font-size: 16px; }
+        .timer-msg { color: #e74c3c; font-weight: bold; margin-top: 15px; display: none; }
+        #ad-box { margin-bottom: 20px; min-height: 50px; }
     </style>
 </head>
 <body>
 
 <div class="box">
-    <h2>রহিম ভাই - স্পেশাল ইনকাম</h2>
-    <p>প্রতিদিন ১০০ অ্যাড দেখে ৭০ টাকা আয় করুন!</p>
+    <h2>রহিম ভাই - ডেইলি ইনকাম</h2>
+    <p>প্রতিদিন ১০০ অ্যাড দেখুন এবং ৭০ টাকা লুফে নিন!</p>
     
     <div class="counter-circle" id="count_display">0</div>
     <p id="status_text">আজকের অ্যাড বাকি: <span id="remaining">100</span> টি</p>
 
-    <div id="ad-box" style="margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; background: #fafafa; min-height: 100px;">
-        [বিজ্ঞাপন এখানে লোড হবে]
+    <div id="ad-box">
+        <script src="https://pl28731130.effectivegatecpm.com/91/c9/da/91c9da9e82261b9ef97f96ae90eb7377.js"></script>
     </div>
 
     <button id="ad_btn" class="btn-ad" onclick="startAd()">অ্যাড দেখুন</button>
-    <p id="limit_msg" class="timer-msg">আপনার আজকের লিমিট শেষ! ২৪ ঘণ্টা পর আবার আসুন।</p>
+    <p id="limit_msg" class="timer-msg">⚠️ আজকের লিমিট শেষ! ২৪ ঘণ্টা পর আবার পেমেন্ট নিতে পারবেন।</p>
 
     <div id="payment_ui" class="payment-section">
-        <p>অভিনন্দন! আপনার টাস্ক শেষ। বিকাশ নাম্বার দিয়ে মেসেজ দিন।</p>
-        <input type="number" id="bkash_number" placeholder="বিকাশ নাম্বার দিন">
+        <p style="color: #856404; font-weight: bold;">অভিনন্দন! আপনার কাজ শেষ।<br>বিকাশ নাম্বার দিন, ২৪ ঘণ্টার মধ্যে পেমেন্ট পাবেন।</p>
+        <input type="number" id="bkash_number" placeholder="আপনার বিকাশ নাম্বার দিন">
         <button class="btn-wa" onclick="sendToWhatsapp()">✅ হোয়াটসঅ্যাপে পেমেন্ট রিকোয়েস্ট দিন</button>
     </div>
 </div>
 
 <script>
     let target = 100;
-    let adminNumber = "8801619158284";
+    let adminNumber = "8801619158284"; // আপনার হোয়াটসঅ্যাপ নাম্বার
     
-    // ব্রাউজার মেমোরি থেকে ডাটা লোড করা
-    let count = parseInt(localStorage.getItem('ad_count')) || 0;
-    let lastDate = localStorage.getItem('last_date');
+    // ব্রাউজার মেমোরি থেকে ডাটা লোড
+    let count = parseInt(localStorage.getItem('rahim_ad_count')) || 0;
+    let lastDate = localStorage.getItem('rahim_last_date');
     let today = new Date().toDateString();
 
-    // নতুন দিন হলে সব জিরো করে দেওয়া
+    // নতুন দিন হলে কাউন্টার রিসেট হবে
     if (lastDate !== today) {
         count = 0;
-        localStorage.setItem('ad_count', 0);
-        localStorage.setItem('last_date', today);
+        localStorage.setItem('rahim_ad_count', 0);
+        localStorage.setItem('rahim_last_date', today);
     }
 
-    updateDisplay();
+    updateUI();
 
     function startAd() {
         if (count < target) {
             count++;
-            localStorage.setItem('ad_count', count);
-            updateDisplay();
+            localStorage.setItem('rahim_ad_count', count);
+            updateUI();
+            
+            // অ্যাড দেখানোর পর ইউজারকে একটু জানানো যে অ্যাড লোড হচ্ছে
+            console.log("Ad Clicked: " + count);
         }
     }
 
-    function updateDisplay() {
+    function updateUI() {
         document.getElementById('count_display').innerText = count;
         document.getElementById('remaining').innerText = target - count;
 
@@ -83,7 +87,7 @@
             alert("সঠিক বিকাশ নাম্বার দিন!");
             return;
         }
-        let message = "হ্যালো রহিম ভাই, আমার ১০০ অ্যাড শেষ।\nবিকাশ নাম্বার: " + bKash + "\nপেমেন্ট দিন ৭০ টাকা।";
+        let message = "হ্যালো রহিম ভাই,\n\nআমি আজকের ১০০টি অ্যাড দেখা শেষ করেছি।\nআমার বিকাশ নাম্বার: " + bKash + "\n\nদয়া করে আমার ৭০ টাকা পেমেন্ট পাঠিয়ে দিন।";
         window.open("https://wa.me/" + adminNumber + "?text=" + encodeURIComponent(message), '_blank');
     }
 </script>
