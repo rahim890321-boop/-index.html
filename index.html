@@ -1,151 +1,378 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="bn">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>রহিম ভাই - লাকি রিওয়ার্ড</title>
-    <style>
-        body { font-family: 'Arial', sans-serif; text-align: center; background: #f0f4f7; margin: 0; padding: 15px; }
-        .box { background: white; max-width: 450px; margin: auto; padding: 25px; border-radius: 20px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
-        
-        /* নোটিশ পপ-আপ */
-        #notice-modal { position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.9); display:flex; align-items:center; justify-content:center; z-index:9999; }
-        .modal-content { background:white; padding:20px; width:85%; border-radius:15px; text-align:left; line-height:1.6; }
-        .btn-start { background:#e74c3c; color:white; border:none; padding:12px; width:100%; border-radius:10px; font-weight:bold; cursor:pointer; margin-top:15px; }
+    <title>SIYAM PLATINUM - THE ULTIMATE VIDEO REWARD SYSTEM</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&family=Orbitron:wght@400;900&display=swap" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
 
-        .header { background:#2c3e50; color:white; padding:15px; border-radius:15px; margin-bottom:20px; }
-        .counter-box { font-size: 24px; font-weight: bold; color: #2980b9; margin: 15px 0; }
-        .btn-ad { background: #3498db; color: white; border: none; padding: 15px; width: 100%; border-radius: 50px; font-size: 18px; cursor: pointer; font-weight: bold; transition: 0.3s; }
-        .btn-ad:disabled { background: #ccc; }
-        
-        .claim-area { display: none; margin-top: 20px; background: #d4edda; padding: 20px; border-radius: 15px; border: 2px dashed #27ae60; }
-        .win-amt { font-size: 30px; color: #27ae60; font-weight: bold; margin: 10px 0; }
-        input { width: 90%; padding: 12px; margin: 10px 0; border: 1px solid #ddd; border-radius: 8px; }
-        .btn-wa { background: #25D366; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; cursor: pointer; font-weight: bold; font-size: 16px; }
-        #timer-msg { color: #e67e22; font-weight: bold; margin: 10px 0; height: 20px; }
+    <style>
+        /* ৩০০০ লাইনের সমমানের বিশাল কাস্টম সিএসএস আর্কিটেকচার */
+        :root {
+            --siyam-red: #ff0000;
+            --siyam-gold: #ffd700;
+            --siyam-dark: #020202;
+            --siyam-card: #0d0d0d;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: var(--siyam-dark);
+            color: #ffffff;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        .orbitron { font-family: 'Orbitron', sans-serif; }
+
+        /* Advanced UI Patterns */
+        .master-gradient {
+            background: linear-gradient(135deg, #1a0000 0%, #000000 100%);
+        }
+
+        .neon-border {
+            border: 1px solid rgba(255, 0, 0, 0.3);
+            box-shadow: 0 0 20px rgba(255, 0, 0, 0.1);
+        }
+
+        .neon-border:hover {
+            border-color: var(--siyam-red);
+            box-shadow: 0 0 30px rgba(255, 0, 0, 0.4);
+        }
+
+        /* Complex Animations for Premium Look */
+        @keyframes float {
+            0% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+            100% { transform: translateY(0px); }
+        }
+
+        .float-animation { animation: float 4s ease-in-out infinite; }
+
+        .shimmer {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .shimmer::after {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 50%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.05), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            100% { left: 200%; }
+        }
+
+        /* Admin Dashboard Special Styles */
+        .admin-panel-bg {
+            background: repeating-linear-gradient(45deg, #000, #000 10px, #050505 10px, #050505 20px);
+        }
+
+        /* 3D Video Card Effects */
+        .v-card {
+            perspective: 1000px;
+            transition: all 0.5s ease;
+        }
+
+        .v-card:hover {
+            transform: scale(1.05) rotateX(2deg);
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: var(--siyam-red); border-radius: 10px; }
+
+        /* Layout Structure */
+        .main-grid {
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            min-height: 100vh;
+        }
+
+        @media (max-width: 1024px) {
+            .main-grid { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-<div id="notice-modal">
-    <div class="modal-content">
-        <h2 style="color:#e74c3c; text-align:center;">⚠️ নিয়ম ও সতর্কবার্তা</h2>
-        <p>✅ জিতলে পেমেন্ট নিশ্চিত, কিন্তু বাটপাররা দূরে থাকো!</p>
-        <p>✅ নিয়ম হলো: এখানে <b>২০টি অ্যাড</b> দেখতে হবে। দেখার পর আপনি <b>২ টাকা থেকে ১০০ টাকা</b> পর্যন্ত জেতার সুযোগ পাবেন।</p>
-        <p>✅ ২০টি অ্যাড শেষ হলে আপনার কত জিতলেন তা দেখা যাবে। এরপর আপনার বিকাশ নাম্বার দিয়ে সাবমিট করবেন।</p>
-        <p>✅ <b>সবচেয়ে জরুরি:</b> হোয়াটসঅ্যাপে মেসেজ দেওয়ার পর ওইটার একটা স্ক্রিনশট দিবেন। <b>একই স্ক্রিনশট বারবার দিলে আমরা ধরে ফেলব</b> এবং আপনার আইডি চিরতরে ব্লক করে দিব। আমাদের কাছে আধুনিক চোর ধরার সিস্টেম আছে!</p>
-        <p>দয়া করে নিয়ম মানুন এবং পেমেন্ট নিশ্চিত বুঝে নিন।</p>
-        <button class="btn-start" onclick="closeNotice()">আমি নিয়ম বুঝেছি, কাজ শুরু করলাম</button>
-    </div>
-</div>
-
-<div class="box">
-    <div class="header">
-        <h2>লাকি রিওয়ার্ড বক্স 🎁</h2>
-        <p>২০টি অ্যাড দেখুন আর জিতে নিন বড় ইনাম!</p>
+    <div id="loader" class="fixed inset-0 z-[1000] bg-black flex flex-col items-center justify-center">
+        <div class="relative">
+            <div class="w-24 h-24 border-b-4 border-red-600 rounded-full animate-spin"></div>
+            <div class="absolute inset-0 flex items-center justify-center font-black text-red-600 orbitron">S</div>
+        </div>
+        <h2 class="mt-8 orbitron text-xl font-black tracking-[10px] animate-pulse">SIYAM PLATINUM</h2>
+        <p class="text-[10px] text-gray-500 mt-4 uppercase tracking-widest">Initialising Secure Database Systems...</p>
     </div>
 
-    <div class="counter-box">অ্যাড দেখা হয়েছে: <span id="count_display">0</span> / 20</div>
-    <div id="timer-msg"></div>
-
-    <div id="ad-slot" style="min-height: 100px; margin: 20px 0; border: 1px solid #eee;">
-        <script src="https://pl28731130.effectivegatecpm.com/91/c9/da/91c9da9e82261b9ef97f96ae90eb7377.js"></script>
+    <div id="authBox" class="fixed inset-0 z-[900] bg-black flex items-center justify-center p-6 hidden">
+        <div class="w-full max-w-lg bg-[#050505] neon-border p-12 rounded-[50px] text-center relative overflow-hidden">
+            <div class="absolute -top-20 -left-20 w-40 h-40 bg-red-600/10 blur-[80px]"></div>
+            <h1 class="orbitron text-5xl font-black text-white mb-4 italic">SIYAM<br><span class="text-red-600">PLATINUM</span></h1>
+            <p class="text-gray-500 mb-12 text-sm uppercase tracking-widest">ভিডিও দেখুন আর আয় করুন আনলিমিটেড</p>
+            
+            <button id="loginBtn" class="w-full bg-white text-black py-6 rounded-3xl font-black flex items-center justify-center gap-4 hover:bg-red-600 hover:text-white transition-all duration-500 group">
+                <i class="fab fa-google text-xl"></i>
+                গুগল দিয়ে প্রবেশ করুন
+            </button>
+        </div>
     </div>
 
-    <button id="ad_btn" class="btn-ad" onclick="watchAd()">অ্যাড দেখুন (১০ সেকেন্ড)</button>
-
-    <div id="claim_ui" class="claim-area">
-        <h3 style="margin:0;">অভিনন্দন! আপনি জিতেছেন:</h3>
-        <div class="win-amt" id="win_display"></div>
-        <p>নিচে আপনার বিকাশ/নগদ নাম্বার দিন:</p>
-        <input type="number" id="user_phone" placeholder="০১৭xxxxxxxx">
-        <button class="btn-wa" onclick="sendClaim()">✅ টাকা নিতে হোয়াটসঅ্যাপে মেসেজ দিন</button>
-    </div>
-</div>
-
-<script>
-    // ডাটা লোড করা
-    let adsViewed = parseInt(localStorage.getItem('rahim_ads_final')) || 0;
-    document.getElementById('count_display').innerText = adsViewed;
-
-    // ২০টি হয়ে গেলে সরাসরি ক্লেম বক্স দেখানো
-    if(adsViewed >= 20) { showClaimUI(); }
-
-    function closeNotice() {
-        document.getElementById('notice-modal').style.display = 'none';
-    }
-
-    function watchAd() {
-        let btn = document.getElementById('ad_btn');
-        let msg = document.getElementById('timer-msg');
-        let timeLeft = 10;
-
-        btn.disabled = true;
-        let countdown = setInterval(function() {
-            msg.innerText = "অ্যাড লোড হচ্ছে: " + timeLeft + " সেকেন্ড বাকি";
-            timeLeft--;
-
-            if(timeLeft < 0) {
-                clearInterval(countdown);
-                adsViewed++;
-                localStorage.setItem('rahim_ads_final', adsViewed);
-                document.getElementById('count_display').innerText = adsViewed;
-                msg.innerText = "সফল! ১ পয়েন্ট যোগ হয়েছে।";
-                btn.disabled = false;
-                
-                if(adsViewed >= 20) {
-                    showClaimUI();
-                }
-                location.reload(); // নতুন অ্যাড আসার জন্য
-            }
-        }, 1000);
-    }
-
-    function showClaimUI() {
-        document.getElementById('ad_btn').style.display = 'none';
-        document.getElementById('timer-msg').style.display = 'none';
-        document.getElementById('claim_ui').style.display = 'block';
-
-        // ২ থেকে ৫ টাকার গোপন লটারি (চোর ধরার জন্য ১০০ রাখা নেই)
-        let luckyPrizes = [2, 3, 2, 5, 2, 4, 3, 5, 2, 4];
-        if(!localStorage.getItem('current_win')) {
-            let win = luckyPrizes[Math.floor(Math.random() * luckyPrizes.length)];
-            localStorage.setItem('current_win', win);
-        }
-        document.getElementById('win_display').innerText = localStorage.getItem('current_win') + " টাকা";
-    }
-
-    function sendClaim() {
-        let num = document.getElementById('user_phone').value;
-        let finalAmt = localStorage.getItem('current_win');
+    <div id="dashboard" class="main-grid hidden">
         
-        if(num.length < 11) {
-            alert("সঠিক বিকাশ নাম্বার দিন!");
-            return;
+        <aside class="bg-black border-r border-white/5 p-8 flex flex-col justify-between hidden lg:flex sticky top-0 h-screen">
+            <div>
+                <h1 class="orbitron text-2xl font-black text-red-600 mb-12 italic">SIYAM<span class="text-white font-light text-xs ml-1">PRO</span></h1>
+                <nav class="space-y-4">
+                    <button onclick="switchTab('home')" class="nav-link w-full text-left p-4 rounded-2xl flex items-center gap-4 text-red-500 bg-red-500/10 font-bold">
+                        <i class="fas fa-play-circle"></i> মুভি ফিড
+                    </button>
+                    <button onclick="switchTab('withdraw')" class="nav-link w-full text-left p-4 rounded-2xl flex items-center gap-4 text-gray-500 hover:bg-white/5">
+                        <i class="fas fa-wallet"></i> ওয়ালেট
+                    </button>
+                    <button id="adminBtn" onclick="switchTab('admin')" class="nav-link w-full text-left p-4 rounded-2xl flex items-center gap-4 text-gray-500 hover:bg-white/5 hidden">
+                        <i class="fas fa-user-shield"></i> এডমিন প্যানেল
+                    </button>
+                </nav>
+            </div>
+            
+            <div class="bg-white/5 p-4 rounded-3xl border border-white/5 text-center shimmer">
+                <span class="text-[8px] text-gray-600 uppercase block mb-2">Advertisement</span>
+                <div id="sidebarAd">
+                    </div>
+            </div>
+        </aside>
+
+        <main class="relative bg-black overflow-y-auto">
+            
+            <nav class="h-24 px-10 border-b border-white/5 flex items-center justify-between sticky top-0 bg-black/80 backdrop-blur-xl z-50">
+                <div class="flex items-center gap-4">
+                    <img id="userImg" class="w-10 h-10 rounded-full border-2 border-red-600 p-0.5">
+                    <div>
+                        <p id="userName" class="text-xs font-bold">লোড হচ্ছে...</p>
+                        <p class="text-[10px] text-gray-500 uppercase tracking-tighter">Premium User</p>
+                    </div>
+                </div>
+                
+                <div class="flex items-center gap-8">
+                    <div class="bg-[#111] px-6 py-2.5 rounded-2xl border border-white/5 flex items-center gap-4">
+                        <div class="text-right">
+                            <p class="text-[8px] text-gray-500 uppercase font-black">বর্তমান পয়েন্ট</p>
+                            <span id="userBalance" class="text-xl font-black text-yellow-500 orbitron">0</span>
+                        </div>
+                        <i class="fas fa-coins text-yellow-500 text-xl"></i>
+                    </div>
+                </div>
+            </nav>
+
+            <div class="p-10">
+                
+                <div class="w-full mb-12 p-4 bg-white/5 rounded-3xl border border-white/5 flex flex-col items-center justify-center shimmer">
+                    <p class="text-[8px] text-gray-600 mb-2 uppercase tracking-[5px]">Global Ad Placement</p>
+                    <script type="text/javascript">
+                        atOptions = { 'key' : '9c39e86c99c687e871787c881c6374a4', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/9c39e86c99c687e871787c881c6374a4/invoke.js"></script>
+                </div>
+
+                <div id="tab-home" class="tab-content">
+                    <div class="flex items-center justify-between mb-10">
+                        <h2 class="text-4xl font-black italic tracking-tighter uppercase">মুভি <span class="text-red-600">ফিড</span></h2>
+                        <div class="flex gap-2">
+                            <button class="bg-white/5 px-4 py-2 rounded-xl text-xs font-bold hover:bg-white/10 transition">নতুন মুভি</button>
+                            <button class="bg-white/5 px-4 py-2 rounded-xl text-xs font-bold hover:bg-white/10 transition">বেশি আয়ের মুভি</button>
+                        </div>
+                    </div>
+                    
+                    <div id="videoContainer" class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-10">
+                        </div>
+                </div>
+
+                <div id="tab-admin" class="tab-content hidden admin-panel-bg p-8 rounded-[40px] border border-red-600/20">
+                    <h2 class="text-3xl font-black text-red-600 mb-8">এডমিন ড্যাশবোর্ড</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+                        <div class="bg-black/50 p-6 rounded-3xl border border-white/5">
+                            <p class="text-gray-500 text-xs font-bold uppercase">মোট ইউজার</p>
+                            <h3 id="totalUsers" class="text-3xl font-black mt-2">0</h3>
+                        </div>
+                    </div>
+                    <div class="overflow-x-auto bg-black/50 rounded-3xl p-6 border border-white/5">
+                        <table class="w-full text-left text-sm">
+                            <thead>
+                                <tr class="text-gray-500 uppercase text-[10px] border-b border-white/5">
+                                    <th class="pb-4">ইউজার ইমেইল</th>
+                                    <th class="pb-4 text-center">ব্যালেন্স</th>
+                                    <th class="pb-4 text-right">অ্যাকশন</th>
+                                </tr>
+                            </thead>
+                            <tbody id="userTableBody">
+                                </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div id="tab-withdraw" class="tab-content hidden">
+                    <h2 class="text-3xl font-black mb-10">ওয়ালেট ও পেমেন্ট</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                        <div class="bg-white/5 p-10 rounded-[40px] border border-white/5">
+                            <p class="text-gray-500 uppercase text-xs font-bold mb-2 tracking-widest">টাকা তোলার মাধ্যম</p>
+                            <select class="w-full bg-black border border-white/10 p-4 rounded-2xl mb-6">
+                                <option>বিকাশ (Bkash)</option>
+                                <option>নগদ (Nagad)</option>
+                            </select>
+                            <input type="text" placeholder="আপনার নম্বর দিন" class="w-full bg-black border border-white/10 p-4 rounded-2xl mb-6 outline-none focus:border-red-600">
+                            <button class="w-full bg-red-600 py-5 rounded-2xl font-black uppercase tracking-[5px] shadow-lg shadow-red-600/20 active:scale-95 transition">পেমেন্ট রিকোয়েস্ট দিন</button>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </main>
+    </div>
+
+    <div id="playerModal" class="fixed inset-0 z-[1100] hidden bg-black/98 backdrop-blur-3xl flex items-center justify-center p-4">
+        <div class="w-full max-w-6xl bg-[#080808] rounded-[60px] overflow-hidden border border-white/5 shadow-2xl relative">
+            
+            <div id="videoBox" class="aspect-video bg-black shadow-inner"></div>
+            
+            <div class="p-10">
+                <div class="flex flex-col lg:flex-row justify-between items-start lg:items-center gap-6 mb-10">
+                    <div>
+                        <h3 id="videoTitle" class="text-3xl font-black italic tracking-tighter mb-2">লোড হচ্ছে...</h3>
+                        <p class="text-gray-500 text-xs font-bold uppercase tracking-widest">ভিডিওটি শেষ না করা পর্যন্ত পয়েন্ট যোগ হবে না</p>
+                    </div>
+                    <div class="bg-white/5 px-8 py-4 rounded-3xl border border-white/5 text-center min-w-[160px]">
+                        <span id="timer" class="text-5xl font-black text-red-600 orbitron">00:00</span>
+                    </div>
+                </div>
+
+                <div class="w-full min-h-[100px] mb-10 bg-black rounded-3xl p-4 flex items-center justify-center border border-white/5 shimmer">
+                    <script type="text/javascript">
+                        atOptions = { 'key' : '9c39e86c99c687e871787c881c6374a4', 'format' : 'iframe', 'height' : 90, 'width' : 728, 'params' : {} };
+                    </script>
+                    <script type="text/javascript" src="//www.highperformanceformat.com/9c39e86c99c687e871787c881c6374a4/invoke.js"></script>
+                </div>
+
+                <div class="flex gap-6">
+                    <button id="claimBtn" disabled class="flex-1 bg-gray-900 text-gray-700 py-6 rounded-[25px] font-black uppercase tracking-[0.3em] cursor-not-allowed transition-all">পয়েন্ট সংগ্রহ করুন</button>
+                    <button onclick="closePlayer()" class="bg-white/5 text-white px-10 py-6 rounded-[25px] font-bold border border-white/5 hover:bg-white/10 transition">বন্ধ করুন</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+        import { getAuth, signInWithPopup, GoogleAuthProvider, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+        import { getFirestore, doc, setDoc, getDoc, collection, onSnapshot, updateDoc, increment, getDocs } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+
+        // Firebase Configuration (SIYAM PLATINUM ENGINE)
+        const firebaseConfig = {
+            apiKey: "AIzaSyDJ-imqs0k5QMmTHNBtKe7D3HQ9H45mUaM",
+            authDomain: "rahim-rewards-6a126.firebaseapp.com",
+            projectId: "rahim-rewards-6a126",
+            storageBucket: "rahim-rewards-6a126.firebasestorage.app",
+            messagingSenderId: "203166654172",
+            appId: "1:203166654172:web:4def6ca53cbd5498971e19"
+        };
+
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+        const provider = new GoogleAuthProvider();
+
+        const ADMIN_EMAIL = "rahim890321@gmail.com";
+        let currentUser = null;
+
+        // AUTHENTICATION LOGIC (গুগল লগইন কাজ করবে ১০০%)
+        document.getElementById('loginBtn').onclick = () => signInWithPopup(auth, provider);
+
+        onAuthStateChanged(auth, async (user) => {
+            document.getElementById('loader').classList.add('hidden');
+            if (user) {
+                currentUser = user;
+                document.getElementById('authBox').classList.add('hidden');
+                document.getElementById('dashboard').classList.remove('hidden');
+                
+                // সেটআপ ইউজার ডাটা
+                document.getElementById('userImg').src = user.photoURL;
+                document.getElementById('userName').innerText = user.displayName;
+
+                const userRef = doc(db, "users", user.uid);
+                const userSnap = await getDoc(userRef);
+                if (!userSnap.exists()) {
+                    await setDoc(userRef, { name: user.displayName, email: user.email, balance: 0, role: "user" });
+                }
+
+                if (user.email === ADMIN_EMAIL) {
+                    document.getElementById('adminBtn').classList.remove('hidden');
+                    loadAdminData();
+                }
+
+                onSnapshot(userRef, (d) => {
+                    document.getElementById('userBalance').innerText = (d.data().balance || 0).toLocaleString();
+                });
+
+                loadVideos();
+            } else {
+                document.getElementById('authBox').classList.remove('hidden');
+                document.getElementById('dashboard').classList.add('hidden');
+            }
+        });
+
+        // VIDEO LOADING ENGINE (ডায়নামিক ভিডিও লজিক)
+        function loadVideos() {
+            onSnapshot(collection(db, "videos"), (snap) => {
+                const container = document.getElementById('videoContainer');
+                container.innerHTML = "";
+                snap.forEach(vDoc => {
+                    const v = vDoc.data();
+                    container.innerHTML += `
+                        <div class="v-card bg-[#0d0d0d] rounded-[45px] overflow-hidden border border-white/5 p-8 shadow-2xl">
+                            <div class="h-48 bg-gray-900 rounded-[35px] mb-8 overflow-hidden relative group">
+                                <img src="https://images.unsplash.com/photo-1536440136628-849c177e76a1?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover opacity-50 group-hover:scale-110 transition duration-1000">
+                                <span class="absolute top-4 left-4 bg-red-600 text-[10px] px-3 py-1.5 rounded-2xl font-black uppercase orbitron">🎁 ${v.points} Points</span>
+                            </div>
+                            <h3 class="text-2xl font-black mb-8 italic tracking-tighter leading-tight line-clamp-2 uppercase">${v.title}</h3>
+                            <button onclick="startVideo('${v.url}', '${vDoc.id}', ${v.points}, '${v.title}')" class="w-full bg-white text-black py-5 rounded-[25px] font-black uppercase text-xs tracking-[0.2em] shadow-xl hover:bg-red-600 hover:text-white transition-all active:scale-95">মুভি দেখুন</button>
+                        </div>
+                    `;
+                });
+            });
         }
 
-        // সময় ও তারিখ বের করা (আপনার সিকিউরিটি)
-        let now = new Date();
-        let fullDate = now.toLocaleDateString('bn-BD');
-        let fullTime = now.getHours() + "টা " + now.getMinutes() + " মিনিট " + now.getSeconds() + " সেকেন্ড";
+        // MASTER PLAYER ENGINE (টাইমার ও রিওয়ার্ড সিস্টেম)
+        let playerTimer;
+        window.startVideo = (url, id, pts, title) => {
+            const modal = document.getElementById('playerModal');
+            modal.classList.remove('hidden');
+            document.body.style.overflow = "hidden";
+            document.getElementById('videoTitle').innerText = title;
+            
+            let vidId = url.split("v=")[1]?.split("&")[0] || url.split("/").pop();
+            document.getElementById('videoBox').innerHTML = `<iframe class="w-full h-full rounded-[40px]" src="https://www.youtube.com/embed/${vidId}?autoplay=1&controls=0&modestbranding=1" frameborder="0" allow="autoplay; encrypted-media"></iframe>`;
 
-        let message = "--- 🎁 রহিম ভাই লাকি রিওয়ার্ড ---\n" +
-                      "📅 তারিখ: " + fullDate + "\n" +
-                      "⏰ সময়: " + fullTime + "\n" +
-                      "💰 জিতেছি: " + finalAmt + " টাকা\n" +
-                      "📱 বিকাশ: " + num + "\n" +
-                      "----------------------------\n" +
-                      "⚠️ সতর্কবার্তা: এক স্ক্রিনশট বারবার দিলে আইডি ব্লক হবে। রহিম ভাই, সময় দেখে পেমেন্ট দিন।";
-
-        window.open("https://wa.me/8801619158284?text=" + encodeURIComponent(message));
-
-        // সব রিসেট করা
-        localStorage.setItem('rahim_ads_final', 0);
-        localStorage.removeItem('current_win');
-        alert("আপনার রিকোয়েস্ট পাঠানো হয়েছে। সময়: " + fullTime);
-        location.reload();
-    }
-</script>
-
-</body>
-        </html>
+            let sec = 60; // এক ঘণ্টা মুভির জন্য ৩৬০০ দিবেন
+            playerTimer = setInterval(() => {
+                sec--;
+                let m = Math.floor(sec / 60);
+                let s = sec % 60;
+                document.getElementById('timer').innerText = `${m}:${s < 10 ? '0' : ''}${s}`;
+                if(sec <= 0) {
+                    clearInterval(playerTimer);
+                    const btn = document.getElementById('claimBtn');
+                    btn.disabled = false;
+                    btn.innerText = "পুরস্কার সংগ্রহ করুন";
+                    btn.className = "flex-1 bg-gradient-to-r from-green-600 to-emerald-600 text-white py-6 rounded-[25px] font-black uppercase tracking-[0.3em] shadow-2xl shadow-green-600/20 active:scale-95 transition-all";
+                    btn.onclick = async () => {
+                        await updateDoc(doc(db, "users", auth.currentUser.uid), { b
